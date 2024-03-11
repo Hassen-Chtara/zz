@@ -1,4 +1,4 @@
-from .operations import *
+from .operations.bytes import *
 import os
 
 
@@ -46,33 +46,7 @@ class Mutator:
         elif not self.is_corpus_empty():
             x_ = self.get_random_seed()
         else:
-            ## raise : no seed to mutate
             raise (
                 "No seed to mutate!! mutate() expectes an input or a value in the courpus"
             )
-        return x_
-
-    def select_operation(self):
-        return random.choice(
-            [
-                bytes_reversing,
-                byte_deletion,
-                byte_insertion,
-                shuffling,
-                byte_duplication,
-                byte_flip,
-                bit_flip,
-                byte_change,
-                inject_bytes,
-            ]
-        )
-
-    def mutate(self, seed=None, times=0):
-        x_ = self.select_seed(seed)
-        if not times:
-            times = random.randint(2, 5)
-
-        for _ in range(times):
-            operation = self.select_operation()
-            x_ = operation(x_)
         return x_

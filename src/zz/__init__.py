@@ -1,2 +1,2 @@
-from .operations import *
+from .operations.bytes import *
 from .mutator import *
